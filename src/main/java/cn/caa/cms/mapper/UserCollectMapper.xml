@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.UserCollectMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.UserCollect" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="C_ID" property="cId" jdbcType="INTEGER" />
+    <result column="C_TYPE" property="cType" jdbcType="INTEGER" />
+    <result column="C_TIME" property="cTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, C_ID, C_TYPE, C_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_user_collect
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_user_collect
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.UserCollect" >
+    insert into c_user_collect (ID, USER_ID, C_ID, 
+      C_TYPE, C_TIME)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, 
+      #{cType,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.UserCollect" >
+    insert into c_user_collect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="cId != null" >
+        C_ID,
+      </if>
+      <if test="cType != null" >
+        C_TYPE,
+      </if>
+      <if test="cTime != null" >
+        C_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cType != null" >
+        #{cType,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.UserCollect" >
+    update c_user_collect
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        C_ID = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cType != null" >
+        C_TYPE = #{cType,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        C_TIME = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.UserCollect" >
+    update c_user_collect
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      C_ID = #{cId,jdbcType=INTEGER},
+      C_TYPE = #{cType,jdbcType=INTEGER},
+      C_TIME = #{cTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

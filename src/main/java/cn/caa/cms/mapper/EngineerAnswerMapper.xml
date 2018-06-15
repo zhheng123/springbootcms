@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.EngineerAnswerMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.EngineerAnswer" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ANS_ID" property="ansId" jdbcType="INTEGER" />
+    <result column="ANS_TIME" property="ansTime" jdbcType="TIMESTAMP" />
+    <result column="ANS_CONTENT" property="ansContent" jdbcType="VARCHAR" />
+    <result column="IS_ADOPT" property="isAdopt" jdbcType="INTEGER" />
+    <result column="ANS_VOICE" property="ansVoice" jdbcType="VARCHAR" />
+    <result column="ACODE" property="acode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ANS_ID, ANS_TIME, ANS_CONTENT, IS_ADOPT, ANS_VOICE, ACODE, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_engineer_answer
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_engineer_answer
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.EngineerAnswer" >
+    insert into c_engineer_answer (ID, ANS_ID, ANS_TIME, 
+      ANS_CONTENT, IS_ADOPT, ANS_VOICE, 
+      ACODE, CREATE_TIME, MODIFY_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{ansId,jdbcType=INTEGER}, #{ansTime,jdbcType=TIMESTAMP}, 
+      #{ansContent,jdbcType=VARCHAR}, #{isAdopt,jdbcType=INTEGER}, #{ansVoice,jdbcType=VARCHAR}, 
+      #{acode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.EngineerAnswer" >
+    insert into c_engineer_answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ansId != null" >
+        ANS_ID,
+      </if>
+      <if test="ansTime != null" >
+        ANS_TIME,
+      </if>
+      <if test="ansContent != null" >
+        ANS_CONTENT,
+      </if>
+      <if test="isAdopt != null" >
+        IS_ADOPT,
+      </if>
+      <if test="ansVoice != null" >
+        ANS_VOICE,
+      </if>
+      <if test="acode != null" >
+        ACODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ansId != null" >
+        #{ansId,jdbcType=INTEGER},
+      </if>
+      <if test="ansTime != null" >
+        #{ansTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ansContent != null" >
+        #{ansContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdopt != null" >
+        #{isAdopt,jdbcType=INTEGER},
+      </if>
+      <if test="ansVoice != null" >
+        #{ansVoice,jdbcType=VARCHAR},
+      </if>
+      <if test="acode != null" >
+        #{acode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.EngineerAnswer" >
+    update c_engineer_answer
+    <set >
+      <if test="ansId != null" >
+        ANS_ID = #{ansId,jdbcType=INTEGER},
+      </if>
+      <if test="ansTime != null" >
+        ANS_TIME = #{ansTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ansContent != null" >
+        ANS_CONTENT = #{ansContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdopt != null" >
+        IS_ADOPT = #{isAdopt,jdbcType=INTEGER},
+      </if>
+      <if test="ansVoice != null" >
+        ANS_VOICE = #{ansVoice,jdbcType=VARCHAR},
+      </if>
+      <if test="acode != null" >
+        ACODE = #{acode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.EngineerAnswer" >
+    update c_engineer_answer
+    set ANS_ID = #{ansId,jdbcType=INTEGER},
+      ANS_TIME = #{ansTime,jdbcType=TIMESTAMP},
+      ANS_CONTENT = #{ansContent,jdbcType=VARCHAR},
+      IS_ADOPT = #{isAdopt,jdbcType=INTEGER},
+      ANS_VOICE = #{ansVoice,jdbcType=VARCHAR},
+      ACODE = #{acode,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

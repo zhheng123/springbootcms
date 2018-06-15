@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.Order" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USER_NICK_NAME" property="userNickName" jdbcType="VARCHAR" />
+    <result column="ENGINE_ID" property="engineId" jdbcType="INTEGER" />
+    <result column="ENGINE_NAME" property="engineName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="INTEGER" />
+    <result column="BUS_TYPE" property="busType" jdbcType="INTEGER" />
+    <result column="BUS_STATUS" property="busStatus" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, USER_NICK_NAME, ENGINE_ID, ENGINE_NAME, PRICE, BUS_TYPE, BUS_STATUS, 
+    CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_order
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_order
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.Order" >
+    insert into c_order (ID, USER_ID, USER_NICK_NAME, 
+      ENGINE_ID, ENGINE_NAME, PRICE, 
+      BUS_TYPE, BUS_STATUS, CREATE_TIME, 
+      MODIFY_TIME)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userNickName,jdbcType=VARCHAR}, 
+      #{engineId,jdbcType=INTEGER}, #{engineName,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{busType,jdbcType=INTEGER}, #{busStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.Order" >
+    insert into c_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userNickName != null" >
+        USER_NICK_NAME,
+      </if>
+      <if test="engineId != null" >
+        ENGINE_ID,
+      </if>
+      <if test="engineName != null" >
+        ENGINE_NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="busType != null" >
+        BUS_TYPE,
+      </if>
+      <if test="busStatus != null" >
+        BUS_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userNickName != null" >
+        #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="engineId != null" >
+        #{engineId,jdbcType=INTEGER},
+      </if>
+      <if test="engineName != null" >
+        #{engineName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="busType != null" >
+        #{busType,jdbcType=INTEGER},
+      </if>
+      <if test="busStatus != null" >
+        #{busStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.Order" >
+    update c_order
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userNickName != null" >
+        USER_NICK_NAME = #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="engineId != null" >
+        ENGINE_ID = #{engineId,jdbcType=INTEGER},
+      </if>
+      <if test="engineName != null" >
+        ENGINE_NAME = #{engineName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="busType != null" >
+        BUS_TYPE = #{busType,jdbcType=INTEGER},
+      </if>
+      <if test="busStatus != null" >
+        BUS_STATUS = #{busStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.Order" >
+    update c_order
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      USER_NICK_NAME = #{userNickName,jdbcType=VARCHAR},
+      ENGINE_ID = #{engineId,jdbcType=INTEGER},
+      ENGINE_NAME = #{engineName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER},
+      BUS_TYPE = #{busType,jdbcType=INTEGER},
+      BUS_STATUS = #{busStatus,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

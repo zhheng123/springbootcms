@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.EngineerMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.Engineer" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="GRADE" property="grade" jdbcType="INTEGER" />
+    <result column="GRADE_IMAGE" property="gradeImage" jdbcType="VARCHAR" />
+    <result column="REPLY_TIME" property="replyTime" jdbcType="INTEGER" />
+    <result column="INTRODUCT" property="introduct" jdbcType="VARCHAR" />
+    <result column="ANS_PRICE" property="ansPrice" jdbcType="INTEGER" />
+    <result column="BALANCE" property="balance" jdbcType="INTEGER" />
+    <result column="OPENID" property="openid" jdbcType="VARCHAR" />
+    <result column="UNIONID" property="unionid" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NICK_NAME, REAL_NAME, IDCARD, PHONE, GRADE, GRADE_IMAGE, REPLY_TIME, INTRODUCT, 
+    ANS_PRICE, BALANCE, OPENID, UNIONID, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_engineer
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_engineer
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.Engineer" >
+    insert into c_engineer (ID, NICK_NAME, REAL_NAME, 
+      IDCARD, PHONE, GRADE, 
+      GRADE_IMAGE, REPLY_TIME, INTRODUCT, 
+      ANS_PRICE, BALANCE, OPENID, 
+      UNIONID, CREATE_TIME, MODIFY_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, 
+      #{gradeImage,jdbcType=VARCHAR}, #{replyTime,jdbcType=INTEGER}, #{introduct,jdbcType=VARCHAR}, 
+      #{ansPrice,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{unionid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.Engineer" >
+    insert into c_engineer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="idcard != null" >
+        IDCARD,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="grade != null" >
+        GRADE,
+      </if>
+      <if test="gradeImage != null" >
+        GRADE_IMAGE,
+      </if>
+      <if test="replyTime != null" >
+        REPLY_TIME,
+      </if>
+      <if test="introduct != null" >
+        INTRODUCT,
+      </if>
+      <if test="ansPrice != null" >
+        ANS_PRICE,
+      </if>
+      <if test="balance != null" >
+        BALANCE,
+      </if>
+      <if test="openid != null" >
+        OPENID,
+      </if>
+      <if test="unionid != null" >
+        UNIONID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="gradeImage != null" >
+        #{gradeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null" >
+        #{replyTime,jdbcType=INTEGER},
+      </if>
+      <if test="introduct != null" >
+        #{introduct,jdbcType=VARCHAR},
+      </if>
+      <if test="ansPrice != null" >
+        #{ansPrice,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.Engineer" >
+    update c_engineer
+    <set >
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        GRADE = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="gradeImage != null" >
+        GRADE_IMAGE = #{gradeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null" >
+        REPLY_TIME = #{replyTime,jdbcType=INTEGER},
+      </if>
+      <if test="introduct != null" >
+        INTRODUCT = #{introduct,jdbcType=VARCHAR},
+      </if>
+      <if test="ansPrice != null" >
+        ANS_PRICE = #{ansPrice,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        BALANCE = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        UNIONID = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.Engineer" >
+    update c_engineer
+    set NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      GRADE = #{grade,jdbcType=INTEGER},
+      GRADE_IMAGE = #{gradeImage,jdbcType=VARCHAR},
+      REPLY_TIME = #{replyTime,jdbcType=INTEGER},
+      INTRODUCT = #{introduct,jdbcType=VARCHAR},
+      ANS_PRICE = #{ansPrice,jdbcType=INTEGER},
+      BALANCE = #{balance,jdbcType=INTEGER},
+      OPENID = #{openid,jdbcType=VARCHAR},
+      UNIONID = #{unionid,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

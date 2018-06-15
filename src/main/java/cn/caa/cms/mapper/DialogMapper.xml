@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.DialogMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.Dialog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="D_ID" property="dId" jdbcType="INTEGER" />
+    <result column="D_NAME" property="dName" jdbcType="VARCHAR" />
+    <result column="D_HEAD" property="dHead" jdbcType="VARCHAR" />
+    <result column="D_CONTENT" property="dContent" jdbcType="VARCHAR" />
+    <result column="D_VOICE" property="dVoice" jdbcType="VARCHAR" />
+    <result column="D_TYPE" property="dType" jdbcType="INTEGER" />
+    <result column="QCODE" property="qcode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, D_ID, D_NAME, D_HEAD, D_CONTENT, D_VOICE, D_TYPE, QCODE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_dialog
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_dialog
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.Dialog" >
+    insert into c_dialog (ID, D_ID, D_NAME, 
+      D_HEAD, D_CONTENT, D_VOICE, 
+      D_TYPE, QCODE, CREATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}, #{dName,jdbcType=VARCHAR}, 
+      #{dHead,jdbcType=VARCHAR}, #{dContent,jdbcType=VARCHAR}, #{dVoice,jdbcType=VARCHAR}, 
+      #{dType,jdbcType=INTEGER}, #{qcode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.Dialog" >
+    insert into c_dialog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dId != null" >
+        D_ID,
+      </if>
+      <if test="dName != null" >
+        D_NAME,
+      </if>
+      <if test="dHead != null" >
+        D_HEAD,
+      </if>
+      <if test="dContent != null" >
+        D_CONTENT,
+      </if>
+      <if test="dVoice != null" >
+        D_VOICE,
+      </if>
+      <if test="dType != null" >
+        D_TYPE,
+      </if>
+      <if test="qcode != null" >
+        QCODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null" >
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="dName != null" >
+        #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="dHead != null" >
+        #{dHead,jdbcType=VARCHAR},
+      </if>
+      <if test="dContent != null" >
+        #{dContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dVoice != null" >
+        #{dVoice,jdbcType=VARCHAR},
+      </if>
+      <if test="dType != null" >
+        #{dType,jdbcType=INTEGER},
+      </if>
+      <if test="qcode != null" >
+        #{qcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.Dialog" >
+    update c_dialog
+    <set >
+      <if test="dId != null" >
+        D_ID = #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="dName != null" >
+        D_NAME = #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="dHead != null" >
+        D_HEAD = #{dHead,jdbcType=VARCHAR},
+      </if>
+      <if test="dContent != null" >
+        D_CONTENT = #{dContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dVoice != null" >
+        D_VOICE = #{dVoice,jdbcType=VARCHAR},
+      </if>
+      <if test="dType != null" >
+        D_TYPE = #{dType,jdbcType=INTEGER},
+      </if>
+      <if test="qcode != null" >
+        QCODE = #{qcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.Dialog" >
+    update c_dialog
+    set D_ID = #{dId,jdbcType=INTEGER},
+      D_NAME = #{dName,jdbcType=VARCHAR},
+      D_HEAD = #{dHead,jdbcType=VARCHAR},
+      D_CONTENT = #{dContent,jdbcType=VARCHAR},
+      D_VOICE = #{dVoice,jdbcType=VARCHAR},
+      D_TYPE = #{dType,jdbcType=INTEGER},
+      QCODE = #{qcode,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.caa.cms.mapper.UserQuestionMapper" >
+  <resultMap id="BaseResultMap" type="cn.caa.cms.domain.UserQuestion" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="QUE_ID" property="queId" jdbcType="INTEGER" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="INTEGER" />
+    <result column="QUE_IMAGE" property="queImage" jdbcType="VARCHAR" />
+    <result column="QUE_BRAND" property="queBrand" jdbcType="VARCHAR" />
+    <result column="QUE_TYPE" property="queType" jdbcType="INTEGER" />
+    <result column="QUE_WAY" property="queWay" jdbcType="INTEGER" />
+    <result column="IS_CLOSE" property="isClose" jdbcType="INTEGER" />
+    <result column="ENG_ID" property="engId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME2" property="createTime2" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, QUE_ID, CONTENT, PRICE, QUE_IMAGE, QUE_BRAND, QUE_TYPE, QUE_WAY, IS_CLOSE, ENG_ID, 
+    CREATE_TIME2, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_user_question
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_user_question
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.caa.cms.domain.UserQuestion" >
+    insert into c_user_question (ID, QUE_ID, CONTENT, 
+      PRICE, QUE_IMAGE, QUE_BRAND, 
+      QUE_TYPE, QUE_WAY, IS_CLOSE, 
+      ENG_ID, CREATE_TIME2, MODIFY_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{queId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{queImage,jdbcType=VARCHAR}, #{queBrand,jdbcType=VARCHAR}, 
+      #{queType,jdbcType=INTEGER}, #{queWay,jdbcType=INTEGER}, #{isClose,jdbcType=INTEGER}, 
+      #{engId,jdbcType=INTEGER}, #{createTime2,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.caa.cms.domain.UserQuestion" >
+    insert into c_user_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="queId != null" >
+        QUE_ID,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="queImage != null" >
+        QUE_IMAGE,
+      </if>
+      <if test="queBrand != null" >
+        QUE_BRAND,
+      </if>
+      <if test="queType != null" >
+        QUE_TYPE,
+      </if>
+      <if test="queWay != null" >
+        QUE_WAY,
+      </if>
+      <if test="isClose != null" >
+        IS_CLOSE,
+      </if>
+      <if test="engId != null" >
+        ENG_ID,
+      </if>
+      <if test="createTime2 != null" >
+        CREATE_TIME2,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="queId != null" >
+        #{queId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="queImage != null" >
+        #{queImage,jdbcType=VARCHAR},
+      </if>
+      <if test="queBrand != null" >
+        #{queBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="queType != null" >
+        #{queType,jdbcType=INTEGER},
+      </if>
+      <if test="queWay != null" >
+        #{queWay,jdbcType=INTEGER},
+      </if>
+      <if test="isClose != null" >
+        #{isClose,jdbcType=INTEGER},
+      </if>
+      <if test="engId != null" >
+        #{engId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime2 != null" >
+        #{createTime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.caa.cms.domain.UserQuestion" >
+    update c_user_question
+    <set >
+      <if test="queId != null" >
+        QUE_ID = #{queId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="queImage != null" >
+        QUE_IMAGE = #{queImage,jdbcType=VARCHAR},
+      </if>
+      <if test="queBrand != null" >
+        QUE_BRAND = #{queBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="queType != null" >
+        QUE_TYPE = #{queType,jdbcType=INTEGER},
+      </if>
+      <if test="queWay != null" >
+        QUE_WAY = #{queWay,jdbcType=INTEGER},
+      </if>
+      <if test="isClose != null" >
+        IS_CLOSE = #{isClose,jdbcType=INTEGER},
+      </if>
+      <if test="engId != null" >
+        ENG_ID = #{engId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime2 != null" >
+        CREATE_TIME2 = #{createTime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.caa.cms.domain.UserQuestion" >
+    update c_user_question
+    set QUE_ID = #{queId,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER},
+      QUE_IMAGE = #{queImage,jdbcType=VARCHAR},
+      QUE_BRAND = #{queBrand,jdbcType=VARCHAR},
+      QUE_TYPE = #{queType,jdbcType=INTEGER},
+      QUE_WAY = #{queWay,jdbcType=INTEGER},
+      IS_CLOSE = #{isClose,jdbcType=INTEGER},
+      ENG_ID = #{engId,jdbcType=INTEGER},
+      CREATE_TIME2 = #{createTime2,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
